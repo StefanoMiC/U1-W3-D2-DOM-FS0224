@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Traversing & Manipulation</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <nav>
+        <nav class="nav-menu">
             <ul id="menu">
                 <li>element-1</li>
                 <li>element-2</li>
@@ -20,6 +25,7 @@
     </header>
     <main>
         <h1 class="main-title">DOM Traversing & Manipulation</h1>
+        <div id="to-be-removed" class="random-class another-class">IO NON DOVREI ESSERCI</div>
         <p class="body-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur vitae, enim beatae cumque
             tempora commodi
             natus alias dignissimos quaerat officiis! Asperiores, ab saepe nihil quisquam odit repellat aspernatur
