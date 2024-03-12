@@ -107,25 +107,33 @@ console.log(liInMmenuWithQS.closest("header")); // è come scrivere liInMmenuWit
 
 // ___________ MANIPOLAZIONE DEGLI ELEMENTI ____________________________________________________________________
 
-// modifica di stile attraverso la proprietà style esistente su un qualsiasi nodo del DOM
+// MODIFICA DI STILE attraverso la proprietà style esistente su un qualsiasi nodo del DOM
+
+// applicazione di stili attraverso proprietà dell'oggetto style:
 // loneWolf.style.backgroundColor = "palegreen";
+// loneWolf.style.fontSize = "20px";
+// loneWolf.style.letterSpacing = "2px";
+
+// applicazione di stile sovrascrivendo la proprietà style con una stringa (come se fosse l'attributo style di un tag html)
 loneWolf.style = "background-color: palegreen; font-size: 20px; letter-spacing: 2px";
 
-// modifica del contenuto, attraverso innerText (per solo testo) e innerHTML (per valutare anche del codice html)
-loneWolf.innerText = "TI HO CAMBIATO AHAHAHAH";
+// MODIFICA DEL CONTENUTO, attraverso innerText (per solo testo) e innerHTML (per valutare anche del codice html)
+loneWolf.innerText = "TI HO CAMBIATO AHAHAHAH"; // innerText per aggiungere semplice testo
 loneWolf.innerHTML = `Lorem ipsum, dolor sit <span style="color: red">amet consectetur adipisicing elit</span>. Tenetur vitae, enim beatae cumque
 tempora commodi
 natus alias dignissimos quaerat officiis! Asperiores,<strong> ab saepe nihil</strong> quisquam odit repellat aspernatur
 veniam laudantium!
 Dignissimos, beatae iure!`;
+// innerHTML per inserire stringa contenente tag HTML che verranno interpretati e generati nella pagina
 
-// applicazione di stili
 const toBeRemoved = document.getElementById("to-be-removed");
 console.dir(toBeRemoved);
 
 // toBeRemoved.className = "temporary-class"; // questo metodo SOVRASCRIVE L'INTERA CLASSE dell'elemento
 toBeRemoved.classList.add("temporary-class"); // con questo metodo riusciamo ad aggiungere una classe senza sovrascrivere le altre già presenti
 toBeRemoved.classList.remove("another-class"); // con questo metodo riusciamo ad aggiungere una classe senza sovrascrivere le altre già presenti
+
+// il setTimeout eseguirà la funzione dopo 1000ms (1s)
 
 // cambiamo testo dopo 1 secondo
 setTimeout(() => {
@@ -136,3 +144,65 @@ setTimeout(() => {
 setTimeout(() => {
   toBeRemoved.classList.add("hidden");
 }, 2000);
+
+// CREAZIONE DI NUOVI ELEMENTI
+
+const newDiv = document.createElement("div"); // creazione IN MEMORIA di un elemento di tipo "div"
+// modifica dei connotati di questo nuovo elemento...
+newDiv.className = "new-div";
+newDiv.id = "lone-div";
+
+console.log(newDiv);
+
+const newP = document.createElement("p");
+newP.innerText = "SONO IL NUOVO ELEMENTO lorem ipsum sit dolor....";
+newP.style.color = "white";
+newP.style.backgroundColor = "red";
+
+newDiv.appendChild(newP); // inserimento di <p> dentro a <div>
+
+// metodo per l'inserimento di nodi all'interno della pagina
+// .appendChild(node)
+// l'inserimento di un nuovo nodo in uno già presente nella pagina, decreterà la sua esistenza
+main.appendChild(newDiv); // inserimento di div (con p all'interno) dentro <main>
+
+// Creiamo una nuova immagine
+const image = document.createElement("img");
+image.src = "https://images.unsplash.com/photo-1709991014067-756232b4ca96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+image.alt = "racing car goodyear tire";
+image.width = "300";
+console.log(image);
+
+// seleziono il contenitore dove andare ad inserire l'immagine
+const imageContainer = document.getElementById("image-wrapper");
+imageContainer.appendChild(image);
+
+// Creazione di un link
+const link = document.createElement("a");
+link.href = "https://epicode.com";
+link.target = "_blank";
+link.innerText = "Go to Epicode -->";
+
+// applicazione di attributo custom
+link.setAttribute("data-custom-attribute", "test");
+
+document.body.appendChild(link);
+
+// lettura di attributo
+console.log(link.getAttribute("href"));
+
+// applicazione di evento di tipo "click"
+
+//1) seleziono l'elemento
+const button = document.querySelector("button");
+console.dir(button);
+
+//2) applicazione di una funzione all'evento onclick
+button.onclick = function () {
+  // questa funzione scatterà solo quando il browser rileverà un click sul bottone
+
+  //   image.classList.add("hidden"); // nasconde solamente l'elemento
+  image.remove(); // rimuove il nodo completamente (cesserà di esistere)
+
+  allLisWithQS.forEach(li => li.remove()); // rimuove tutti i "li" precedentemente selezionati nella pagina
+};
