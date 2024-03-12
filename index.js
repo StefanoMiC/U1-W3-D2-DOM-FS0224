@@ -189,7 +189,8 @@ link.setAttribute("data-custom-attribute", "test");
 document.body.appendChild(link);
 
 // lettura di attributo
-console.log(link.getAttribute("href"));
+console.log(link.href);
+console.log(link.getAttribute("data-custom-attribute"));
 
 // applicazione di evento di tipo "click"
 
